@@ -92,7 +92,12 @@ display font used: arcade normal regular
   + Scrapers are simple
   + Code at:
     https://github.com/FujiNetWIFI/fujinet-high-scores
-    
+
+- Network Library in C (fn_io, fn_network)
+  + Make cross platform applications easier in C.
+  + NEXT: Other bindings for other languages(*)
+
+(*) Where you can help!
 
 * What can you do?
 
