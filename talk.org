@@ -1,0 +1,108 @@
+#+title: FujiNet State of the Union (SOTU) 2024
+#+author: Thomas Cherryhomes
+#+email: thom.cherryhomes@gmail.com
+
+#+begin_note
+Talk duration: 45 min max.
+display font used: arcade normal regular
+#+end_note
+
+* state of the union
+
+- Fujinet is a mature; multi-platform project
+
+- Apple ][ bring-up
+
+- macintosh 68k bring-up
+
+- trs-80 color computer bring-up
+
+- fujinet game lobby
+
+* FUJINET is a mature; multi-platform project
+
+- more platforms
+  + apple ][
+  + MACINTOSH 68K
+  + TRS-80 Color Computer
+
+- FUJINET-PC brings FUJINET to emulators
+  + Atari 8-bit
+  + apple ][
+  + others? (*)
+
+- More contributors:
+  + Mark Fisher
+  + Oliver Schmidt (a2RetroNet)
+      
+(*) indicates where you can help!
+
+* Apple ][ bring-up
+
+- rock solid!
+
+- Apple /// support
+  
+- fujinet-pc so anyone can start developing
+  code.
+
+- next: engage hardware vendors
+
+- next: port Lobby and 5-card-stud
+
+* Macintosh 68K bring-up
+
+- First Development boards made
+
+- Can boot FLOPPY images
+
+- NEXT: CONFIG Desk Accessory
+
+- Figure out Networking and Printing
+
+* TRS-80 Color Computer bring-up
+
+- Disk, print, and networking
+
+- Cassette bootstrapping
+
+- FUJINET on Cartridge coming.
+
+- NEXT: APPS
+
+* FUJINET Game lobbY
+
+- Potential for cross-platform gameplay
+  
+- Atari Lobby and 5 Card Stud is STABLE
+
+- LOBBY is written in 'C' and is CROSS PLATFORM
+  https://github.com/FujiNetWIFI/fujinet-apps/tree/master/lobby
+
+- 5CS is also written in 'C'
+  https://github.com/FujiNetWIFI/fujinet-apps/tree/master/5cardstud
+
+- NEXT: APPLE2, Commodore, aDam, and COCO
+
+* OTHER SMALL THINGS
+
+- High Score Enabled Games
+  + All it needs is disk writing
+  + Implemented on Atari, Adam, and Apple ][
+  + Scrapers are simple
+  + Code at:
+    https://github.com/FujiNetWIFI/fujinet-high-scores
+    
+
+* What can you do?
+
+- Come to the discord!
+  https://discord.gg/2Ce9guX
+
+- Install FUJINET-PC and hack on code
+
+- Build FUJINET for your communities.
+
+- Let people know about FUJINET
+
+* Questions?
