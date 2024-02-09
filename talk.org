@@ -18,7 +18,7 @@ display font used: arcade normal regular
 - trs-80 color computer bring-up
 
 - fujinet game lobby
-
+    
 * FUJINET is a mature; multi-platform project
 
 - more platforms
@@ -70,7 +70,7 @@ display font used: arcade normal regular
 
 - NEXT: APPS
 
-* FUJINET Game lobbY
+* FUJINET Game lobby
 
 - Potential for cross-platform gameplay
   
@@ -84,7 +84,7 @@ display font used: arcade normal regular
 
 - NEXT: APPLE2, Commodore, aDam, and COCO
 
-* OTHER SMALL THINGS
+* LOTS MORE
 
 - High Score Enabled Games
   + All it needs is disk writing
@@ -97,6 +97,8 @@ display font used: arcade normal regular
   + Make cross platform applications easier in C.
   + NEXT: Other bindings for other languages(*)
 
+- Network Operating System
+  
 (*) Where you can help!
 
 * What can you do?
