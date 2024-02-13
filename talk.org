@@ -41,40 +41,42 @@ display font used: arcade normal regular
 
 - rock solid!
 
-- Apple /// support
+- [[shell:okular apple3.jpg][Apple /// support]]
   
 - fujinet-pc so anyone can start developing
   code.
 
-- next: engage hardware vendors
+- next: engage hardware vendors(*)
 
-- next: port Lobby and 5-card-stud
+- next: port Lobby and 5-card-stud(*)
 
 * Macintosh 68K bring-up
 
-- First Development boards made
+- [[shell:okular macfuji_dev_board.jpg][First Development boards made]]
 
-- Can boot FLOPPY images
+- [[shell:okular macfuji_booting_a_floppy.jpg][Can use FLOPPY or DCD images]]
 
-- NEXT: CONFIG Desk Accessory
+- [[shell:okular fujimac_desk_accessory.png][NEXT: CONFIG Desk Accessory]]
 
-- Figure out Networking and Printing
+- Figure out Networking and Printing(*)
+
+  (*) Where you can help!
 
 * TRS-80 Color Computer bring-up
 
-- Disk, print, and networking
+- [[https://www.youtube.com/watch?v=3k3tOeHnAzs][Disk]], print, and networking
 
 - Cassette bootstrapping
 
-- FUJINET on Cartridge coming.
+- [[shell:okular fujinet-coco-cart.png][FUJINET on Cartridge coming]].
 
 - NEXT: APPS
 
 * FUJINET Game lobby
 
-- Potential for cross-platform gameplay
+- Potential for [[okular 5cs-apple2.png][cross]]-[[shell:okular 5cs-atari.png][platform]] [[shell:okular 5cs-c64.webp][gameplay]]
   
-- Atari Lobby and 5 Card Stud is STABLE
+- [[shell:vlc lobby.mp4][Atari Lobby and 5 Card Stud is STABLE]]
 
 - LOBBY is written in 'C' and is CROSS PLATFORM
   https://github.com/FujiNetWIFI/fujinet-apps/tree/master/lobby
@@ -82,7 +84,9 @@ display font used: arcade normal regular
 - 5CS is also written in 'C'
   https://github.com/FujiNetWIFI/fujinet-apps/tree/master/5cardstud
 
-- NEXT: APPLE2, Commodore, aDam, and COCO
+- NEXT: Apple2, Commodore, Adam, and COCO(*)
+
+  (*) Where you can help!
 
 * LOTS MORE
 
@@ -90,14 +94,23 @@ display font used: arcade normal regular
   + All it needs is disk writing
   + Implemented on Atari, Adam, and Apple ][
   + Scrapers are simple
+  + Web Scoreboard: http://scores.irata.online/
   + Code at:
     https://github.com/FujiNetWIFI/fujinet-high-scores
 
 - Network Library in C (fn_io, fn_network)
   + Make cross platform applications easier in C.
+  + Open, Close, Read, Write, ioctl, Parse JSON
+  + Fuji control commands too! (set slots, network config)
   + NEXT: Other bindings for other languages(*)
+  + GitHub: https://github.com/FujiNetWIFI/fujinet-network-lib
 
-- Network Operating System
+- Network Operating System (Atari)
+  + Only needs N:, no disk filesystem.
+  + Can use any N: protocol (SMB, TNFS, HTTP, FTP, etc.)
+  + On-line help!
+  + [[https://www.youtube.com/watch?v=52PopzZsKUM][Video]]
+  + GitHub: https://github.com/FujiNetWIFI/fujinet-nhandler/
   
 (*) Where you can help!
 
@@ -106,10 +119,19 @@ display font used: arcade normal regular
 - Come to the discord!
   https://discord.gg/2Ce9guX
 
-- Install FUJINET-PC and hack on code
+- GET A FUJINET, OR...
+  Install FUJINET-PC and hack on code
 
 - Build FUJINET for your communities.
 
 - Let people know about FUJINET
 
 * Questions?
+
+- GitHubs:
+  Hardware: https://github.com/FujiNetWIFI/fujinet-hardware
+  Firmware: https://github.com/FujiNetWIFI/fujinet-platformio
+  SOFTWARE: https://github.com/FujiNetWIFI/fujinet-apps
+  Libraries: https://github.com/FujiNetWIFI/fujinet-network-lib
+  High Scores: https://github.com/FujiNetWIFI/fujinet-high-scores
+  
