@@ -37,6 +37,26 @@ display font used: arcade normal regular
       
 (*) indicates where you can help!
 
+* Just this week
+
+- Oliver Schmidt and Mark fisher port Contiki Browser
+  [[https://cdn.discordapp.com/attachments/656981817848496202/1224840530698047581/IMG_2750.jpg?ex=661ef4a2&is=660c7fa2&hm=280236789213fcaa2f448f59b7ec531689c3fca3c8c9b81ac0b0e40318f16d85&][Atari 8-bit Screenshot]]
+  [[https://cdn.discordapp.com/attachments/656981817848496202/1224840509080604756/IMG_2751.jpg?ex=661ef49d&is=660c7f9d&hm=fd7c87a743fa3fe4e87d28d84a2e766f0dda690a7ead249469dd221e741f5bcf&][Apple II Screenshot]]
+
+- [[https://cdn.discordapp.com/attachments/656981817848496202/1225872080017424455/image.png?ex=6622b557&is=66104057&hm=897ed98bc95b777cdf20c488b17fecf57a99fcc7f3500104cecff83abce63f0b&][Tomek Rekawek sends PR for TCP TNFS (!)]]
+
+- Fixing Mongoose TLS for Fujinet-PC
+
+- FujiNet PC HTTP improvements
+
+- FujiNet-Lib non-blocking read improvements
+
+#+begin_quote
+"There are decades where nothing happens; 
+  and there are weeks where decades happen"
+    --Lenin
+#+end_quote
+
 * Apple ][ bring-up
 
 - rock solid!
@@ -71,6 +91,26 @@ display font used: arcade normal regular
 - [[shell:okular fujinet-coco-cart.png][FUJINET on Cartridge coming]].
 
 - NEXT: APPS
+
+* Atari 2600 bring-up
+
+- Headed by:
+  Jeff Piepmeier
+  gtortone
+
+- Cross team collaboration with PlusCart!
+
+- Ported PlusCart+ firmware from STM32
+  to [[https://media.discordapp.net/attachments/1194775662628704287/1220043198190190592/rn_image_picker_lib_temp_2a5265b6-b8da-4ebb-8756-f80d3cd8cd24.jpg?ex=661ff5c5&is=660d80c5&hm=e38298d48ef7fc9ce3280f74598b4f5188d77ae9c39fb38d2e61640d761ca3a4&=&format=webp&width=1620&height=2160][RP2040]]
+
+- [[shell:celluloid pf2.mp4][Boot cart]] over local storage,
+  or network.
+
+- Next: Communicate with ESP32
+  to leverage our network stack
+
+- So that Games like [[https://cdn.discordapp.com/attachments/1194775662628704287/1225893788141097093/2600-5cs.png?ex=6622c98f&is=6610548f&hm=f98c3954f8758f6825d451ea186593cfcbcd9bc9d57d01f137110358345208f4&][5CS]] will work
+  [[https://woodgrain.taswegian.com/index.php?action=dlattach;attach=335;image][(kernel work started by Al_Nafuur!)]]
 
 * FUJINET Game lobby
 
@@ -125,6 +165,12 @@ display font used: arcade normal regular
 - Build FUJINET for your communities.
 
 - Let people know about FUJINET
+
+* When is FujiNet coming to ______?
+
+- When We Get Hardware (donations welcome), or
+
+- When You Champion and Help do a Bring-up!
 
 * Questions?
 
