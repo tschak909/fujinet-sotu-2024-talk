@@ -4,7 +4,6 @@
 
 #+begin_note
 Talk duration: 45 min max.
-display font used: arcade normal regular
 #+end_note
 
 * state of the union
@@ -17,8 +16,16 @@ display font used: arcade normal regular
 
 - trs-80 color computer bring-up
 
+- generic bus interface
+
+- fujinet-lib for cross platform fujinet programming in c
+
 - fujinet game lobby
+
+- what you can do to help!
     
+- and more
+
 * FUJINET is a mature; multi-platform project
 
 - more platforms
@@ -37,7 +44,7 @@ display font used: arcade normal regular
       
 (*) indicates where you can help!
 
-* Just this week
+* In the last few months
 
 - Oliver Schmidt and Mark fisher port Contiki Browser
   [[https://cdn.discordapp.com/attachments/656981817848496202/1224840530698047581/IMG_2750.jpg?ex=661ef4a2&is=660c7fa2&hm=280236789213fcaa2f448f59b7ec531689c3fca3c8c9b81ac0b0e40318f16d85&][Atari 8-bit Screenshot]]
@@ -45,50 +52,123 @@ display font used: arcade normal regular
 
 - [[https://cdn.discordapp.com/attachments/656981817848496202/1225872080017424455/image.png?ex=6622b557&is=66104057&hm=897ed98bc95b777cdf20c488b17fecf57a99fcc7f3500104cecff83abce63f0b&][Tomek Rekawek sends PR for TCP TNFS (!)]]
 
-- Fixing Mongoose TLS for Fujinet-PC
-
 - FujiNet PC HTTP improvements
 
 - FujiNet-Lib non-blocking read improvements
 
+- Network memory leak fixed!
+
+- New web-based Flash installer
+  https://fujinet.online/flasher/
+
+- Desktop Flasher Program updated
+  https://fujinet.online/download/
+
 #+begin_quote
 "There are decades where nothing happens; 
   and there are weeks where decades happen"
-    --Lenin
+    --V.I. Lenin
 #+end_quote
+
+
+** Network Memory Leak Fixed
+
+- Network Operations were leaking 1000+ bytes for each open/read/close
+
+- Original solution was to allocate from PSRAM for anything more than 20 bytes
+
+- Work-around couldn't be used on Apple2
+
+- ESP-IDF's heap tracing tools were too basic.
+
+- Solution: Use Valgrind on FujiNet-PC
+
+- Code Solution: Convert all C malloced buffers to use C++ <uint8_t> std::vectors, which automatically allocate heap, and deallocate when they leave scope.
+
+
+** Faster Cold-Start time!
+
+- FujiNet cold start time had steadily increased, up to 800ms! too slow!
+
+- Measuring time execution inside main() indicated where the problem was:
+
+https://github.com/FujiNetWIFI/fujinet-firmware/blob/master/src/main.cpp
+
+#+begin_src 
+
+| Line      | ms   | Description
+|---        |---   |---
+| 152       | 3    | Immediately after start
+| 165       | 18   | nvs_flash_init()
+| 194       | 19   | check_hardware_ver()
+| 196       | 19   | fnKeyManager.setup()
+| 199       | 19   | fnLedManager.setup()
+| 200       | 430  | fsFlash.start()  <-- Here.
+| 202       | 507  | fnSDFAT.start()
+| 208       | 508  | crypto.setkey()
+| 212       | 588  | Config.load()
+| 216       | 760  | theFuji.setup()
+
+#+end_src
+
+- SPIFFS too slow! It builds filesystem metadata at cold start!
+
+- Solution? Use LittleFS
+
+- @Idolpx did the work to use LittleFS as part of Meatloaf. Work had already been merged in.
+
+- So we switched over to use it.
+
+- Result? 800ms was reduced to 160ms (!)
+
+- This also means long standing bug of FujiNet not fast enough to cold start on Atari 400/800? now fixed.
+ 
+- We had to retire the flasher app.
+
+- But now it can be done over web! https://fujinet.online/flasher/
 
 * Apple ][ bring-up
 
 - rock solid!
 
-- [[shell:okular apple3.jpg][Apple /// support]]
-  
-- fujinet-pc so anyone can start developing
-  code.
+- [[shell:xviewer apple3.jpg][Apple /// support]]
 
+- New vendor! https://www.fvresearch.com/
+  
 - next: engage hardware vendors(*)
 
-- next: port Lobby and 5-card-stud(*)
+- Apple II 5cs now working! (launch applewin)
 
 * Macintosh 68K bring-up
 
-- [[shell:okular macfuji_dev_board.jpg][First Development boards made]]
+- [[shell:xviewer macfuji_dev_board.jpg][First Development boards made]]
 
-- [[shell:okular macfuji_booting_a_floppy.jpg][Can use FLOPPY or DCD images]]
+- [[shell:xviewer macfuji_booting_a_floppy.jpg][Can use FLOPPY or DCD images]]
 
-- [[shell:okular fujimac_desk_accessory.png][NEXT: CONFIG Desk Accessory]]
+- [[shell:xviewer fujimac_desk_accessory.png][NEXT: CONFIG Desk Accessory]]
 
 - Figure out Networking and Printing(*)
+
+- New contributor Marcio Teixeira
+-- [[shell:xviewer FujiHello.jpg][He has been figuring out Mac<->FujiNet protocol]]
 
   (*) Where you can help!
 
 * TRS-80 Color Computer bring-up
 
-- [[https://www.youtube.com/watch?v=3k3tOeHnAzs][Disk]], print, and networking
+- Works on All TRS-80 Color Computers: 1, 2, and 3.
 
-- Cassette bootstrapping
+- [[https://www.youtube.com/shorts/-w3FwIjD4SY][Plugs into Cartridge slot.]]
 
-- [[shell:okular fujinet-coco-cart.png][FUJINET on Cartridge coming]].
+- [[shell:celluloid coco-disk.mp4][Disk]], [[shell:celluloid coco-print.mp4][print]], and networking
+
+- [[shell:xviewer rev000.jpg][HDB-DOS in ROM on cartridge.]]
+
+- [[https://www.youtube.com/shorts/XGEPfu1arQg][ISS Tracker]]
+
+- [[shell:celluloid coco-news.mp4][News Reader]]
+
+- [[shell:celluloid netcat.mp4][Netcat]]
 
 - NEXT: APPS
 
@@ -101,7 +181,7 @@ display font used: arcade normal regular
 - Cross team collaboration with PlusCart!
 
 - Ported PlusCart+ firmware from STM32
-  to [[https://media.discordapp.net/attachments/1194775662628704287/1220043198190190592/rn_image_picker_lib_temp_2a5265b6-b8da-4ebb-8756-f80d3cd8cd24.jpg?ex=661ff5c5&is=660d80c5&hm=e38298d48ef7fc9ce3280f74598b4f5188d77ae9c39fb38d2e61640d761ca3a4&=&format=webp&width=1620&height=2160][RP2040]]
+  to RP2040
 
 - [[shell:celluloid pf2.mp4][Boot cart]] over local storage,
   or network.
@@ -109,14 +189,161 @@ display font used: arcade normal regular
 - Next: Communicate with ESP32
   to leverage our network stack
 
-- So that Games like [[https://cdn.discordapp.com/attachments/1194775662628704287/1225893788141097093/2600-5cs.png?ex=6622c98f&is=6610548f&hm=f98c3954f8758f6825d451ea186593cfcbcd9bc9d57d01f137110358345208f4&][5CS]] will work
+- So that Games like 5CS will work
   [[https://woodgrain.taswegian.com/index.php?action=dlattach;attach=335;image][(kernel work started by Al_Nafuur!)]]
+
+* Generic Parallel Bus
+
+** Why?
+
+- Every FujiNet bring-up thus far has been serial.
+
+- Many more systems have a parallel expansion bus.
+
+- Game consoles have cartridge slots.
+
+- Computer examples
+  + TRS-80 Model 1, 2, 3, 4 (Z80)
+  + ZX Spectrum (Z80)
+  + Mattel Aquarius (Z80)
+  + IBM 5150 PC (ISA)
+  + S-100 (Altair, IMSAI, etc.)
+  + MSX
+  + ...and more.
+
+- Game Console examples
+  + Atari 2600
+  + Mattel Intellivision
+  + ColecoVision
+  + Nintendo Entertainment System
+  + Sega SG-1000/Master System
+  + ...and more.
+
+** How?
+
+- Use RP2040 as front-end to ESP32
+
+- Use RP2040 DMA features to help with address decoding.
+
+- Maximize usage of both cores
+  + core 0 - High level work, interface to ESP32
+  + core 1 - Timing Critical work
+
+- Overclock
+
+- Example work being done here: https://github.com/FujiNetWIFI/fujinet-firmware/tree/master/pico
+
+** When?
+
+- Jeff Piepmeier is doing first implementation, CoCo Cart
+  + Replaces Serial connection with bus implementation.
+  + Using Becker Port implementation
+
+- Jeff Piepmeier also used pico on Mac implementation for faster serial performance needed for DCD.
+
+- Owen Reynolds is experimenting with approaches for ZX Spectrum
+
+- gtortone is working on Atari 2600 implementation.
+
+- These two implementations will show us how to reach
+  anything with a card edge!
+
+* Future Bring-ups
+
+- Acorn BBC/Electron
+
+- Intellivision
+
+- MSX
+
+- Is your favorite machine here? Help us out!
+
+- Is your favorite machine not here? Help us out!
+
+* fujinet-lib
+
+- A cross-platform library to access FujiNet functions from C.
+
+- Headed by Mark Fisher (@fenrock)
+
+- Atari, Apple2, CoCo, C64
+
+** fn_fuji
+
+- FujiNet Control Functions, such as those used by CONFIG.
+  + fuji_set_ssid()
+  + fuji_mount_all()
+  + fuji_get_wifi_status()
+  + etc.
+
+- Write a replacement for CONFIG, or use a subset of its functionality.
+
+#+begin_src C
+
+#include <fujinet-fuji.h>
+
+// Set SSID
+
+void main(void)
+{
+    NetConfig nc = {"my_network","network_password"};
+
+    if (!fuji_set_ssid(&nc))
+    {
+        printf("Could not set WiFi Network.");
+        return;
+    }
+}
+
+#+end_src
+
+** fn_network
+
+- Easy use of FujiNet networking functions
+
+- Open, Close, Read, Write, Status, special functions
+
+#+begin_src C
+
+#include <fujinet-network.h>
+#include <stdio.h>
+
+// Print my external IP from icanhazip.com
+
+const char *url = "n:https://icanhazip.com/";
+uint8_t buffer[256];
+uint16_t bw;
+uint8_t c, err;
+
+void main(void)
+{
+    if (network_open(url, OPEN_MODE_READ, OPEN_TRANS_NONE) != FN_ERR_OK)
+    {
+        printf("Could not open. Aborting.\n");
+        return;
+    }
+
+    // Get # of bytes waiting
+    network_status(url, &bw, &c, &err);
+
+    // Read connection
+    network_read(url, buffer, bw);
+
+    // Close connection
+    network_close(url);
+
+    printf("My IP is: %s\n\n",buffer);
+}
+
+#+end_src
 
 * FUJINET Game lobby
 
-- Potential for [[okular 5cs-apple2.png][cross]]-[[shell:okular 5cs-atari.png][platform]] [[shell:okular 5cs-c64.webp][gameplay]]
+- Potential for cross-platform game-play. (launch emus)
   
 - [[shell:vlc lobby.mp4][Atari Lobby and 5 Card Stud is STABLE]]
+
+- Apple2 5 Card Stud works great!
 
 - LOBBY is written in 'C' and is CROSS PLATFORM
   https://github.com/FujiNetWIFI/fujinet-apps/tree/master/lobby
@@ -124,9 +351,31 @@ display font used: arcade normal regular
 - 5CS is also written in 'C'
   https://github.com/FujiNetWIFI/fujinet-apps/tree/master/5cardstud
 
-- NEXT: Apple2, Commodore, Adam, and COCO(*)
+- NEXT: Commodore, Adam, and COCO(*)
 
   (*) Where you can help!
+
+* Atari User's Guide
+
+- Written in DocBook 5.1
+
+- [[shell:open /home/thomc/Desktop/fujinet-manuals/fujinet_for_atari_users/fujinet_for_atari_users.pdf][Professional Typesetting]]
+
+- Covers three parts
+
++ User's Guide
++ Programmer's Guide
++ Reference
+
+- Up in the fujinet-manuals repo on GitHub
+
+* Atari Intro Guide
+
+- Done by Andy Diller
+
+- [[shell:open /home/thomc/Desktop/fujinet-sotu-2024-talk/FujiNet_Atari_Manual_draft5.pdf][Focusing on Getting Started]]
+
+- Modeled after Atari DOS manual
 
 * LOTS MORE
 
@@ -137,13 +386,6 @@ display font used: arcade normal regular
   + Web Scoreboard: http://scores.irata.online/
   + Code at:
     https://github.com/FujiNetWIFI/fujinet-high-scores
-
-- Network Library in C (fn_io, fn_network)
-  + Make cross platform applications easier in C.
-  + Open, Close, Read, Write, ioctl, Parse JSON
-  + Fuji control commands too! (set slots, network config)
-  + NEXT: Other bindings for other languages(*)
-  + GitHub: https://github.com/FujiNetWIFI/fujinet-network-lib
 
 - Network Operating System (Atari)
   + Only needs N:, no disk filesystem.
