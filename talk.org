@@ -47,12 +47,10 @@ Talk duration: 45 min max.
 * In the last few months
 
 - Oliver Schmidt and Mark fisher port Contiki Browser
-  [[https://cdn.discordapp.com/attachments/656981817848496202/1224840530698047581/IMG_2750.jpg?ex=661ef4a2&is=660c7fa2&hm=280236789213fcaa2f448f59b7ec531689c3fca3c8c9b81ac0b0e40318f16d85&][Atari 8-bit Screenshot]]
-  [[https://cdn.discordapp.com/attachments/656981817848496202/1224840509080604756/IMG_2751.jpg?ex=661ef49d&is=660c7f9d&hm=fd7c87a743fa3fe4e87d28d84a2e766f0dda690a7ead249469dd221e741f5bcf&][Apple II Screenshot]]
+  [[https://content.invisioncic.com/r322239/monthly_2024_04/IMG_8927.thumb.jpg.9d5c423ab011c8d0cb1d36ccdac83b7b.jpg][Atari 8-bit Screenshot]]
+  [[https://pbs.twimg.com/media/GKkqqJ6W8AAFOnD.jpg][Apple II Screenshot]]
 
 - [[https://cdn.discordapp.com/attachments/656981817848496202/1225872080017424455/image.png?ex=6622b557&is=66104057&hm=897ed98bc95b777cdf20c488b17fecf57a99fcc7f3500104cecff83abce63f0b&][Tomek Rekawek sends PR for TCP TNFS (!)]]
-
-- FujiNet PC HTTP improvements
 
 - FujiNet-Lib non-blocking read improvements
 
@@ -63,6 +61,9 @@ Talk duration: 45 min max.
 
 - Desktop Flasher Program updated
   https://fujinet.online/download/
+
+- Nightly builds
+  https://github.com/FujiNetWIFI/fujinet-firmware/releases/tag/nightly
 
 #+begin_quote
 "There are decades where nothing happens; 
@@ -123,8 +124,6 @@ https://github.com/FujiNetWIFI/fujinet-firmware/blob/master/src/main.cpp
 
 - This also means long standing bug of FujiNet not fast enough to cold start on Atari 400/800? now fixed.
  
-- We had to retire the flasher app.
-
 - But now it can be done over web! https://fujinet.online/flasher/
 
 * Apple ][ bring-up
@@ -252,7 +251,7 @@ https://github.com/FujiNetWIFI/fujinet-firmware/blob/master/src/main.cpp
 
 - Acorn BBC/Electron
 
-- Intellivision
+- [[shell:xviewer 5cs-intv.png][Intellivision]]
 
 - MSX
 
